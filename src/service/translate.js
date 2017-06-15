@@ -2335,6 +2335,16 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
       return null;
     };
 
+    $translate.getTranslationTableRef = function (langKey) {
+        langKey = langKey || $translate.use();
+        if (langKey && $translationTable[langKey]) {
+            return $translationTable[langKey];
+        }
+        return null;
+    };
+
+    $translate.translations = translations;
+
     // Whenever $translateReady is being fired, this will ensure the state of $isReady
     var globalOnReadyListener = $rootScope.$on('$translateReady', function () {
       $onReadyDeferred.resolve();
